@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html>
+	<head>
+		<title> Home Page </title>
+		<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+	</head>
+	<body>
+		<h1> This is Home Page of Polls Application </h1>
+		{% if latest_question_list %}
+			<ul>
+			{% for question in latest_question_list %}
+				<!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+				<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+				
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>No polls are available.</p>
+		{% endif %}
+		<img src="{% static 'polls/images/back.jpg' %}">
+	</body>
+</html>
